@@ -1,9 +1,22 @@
+//********** DEPENDENCIES **********
+
 const express = require("express");
 const http = require("http");
-const path = require("path");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const app = express();
+const mongoose = require('mongoose');
+
+// DB Setup - Require All Models
+const db = require('./models');
+
+// Specify Database (Production || Local)
+// const MONGODB_URI = "mongodb://localhost:auth/auth";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/auth";
+
+// Connect to the Mongo DB
+mongoose.connect(MONGODB_URI);
+
 
 //*********** APP SETUP *********
 
@@ -16,11 +29,6 @@ app.use(bodyParser.json({ type: '*/*' }));
 //***** Routes *****
 
 require("./routes/html-routes.js")(app);
-
-
-
-
-
 
 
 //*********** SERVER SETUP ***********
