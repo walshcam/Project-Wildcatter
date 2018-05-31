@@ -1,4 +1,4 @@
-const Authentication = require("./controllers/authentication");
+const Authentication = require("./../controllers/authentication");
 
 //Post route for sending and receiving authentication
 module.exports = function(app) {

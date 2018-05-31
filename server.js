@@ -29,6 +29,7 @@ app.use(bodyParser.json({ type: '*/*' }));
 //***** Routes *****
 
 require("./routes/html-routes.js")(app);
+require("./routes/authentication-routes.js")(app);
 
 
 //*********** SERVER SETUP ***********
