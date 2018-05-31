@@ -8,6 +8,7 @@ function tokenForUser(user) {
     console.log("In The tokenForUser Database")
     //sub - subject => using user id because it never changes
     //iat - issued at time => creates timestamp for token
+    //jwt.encode() creates the encoded payload
     return jwt.encode({ sub: user.id, iat: timestamp }, config.secret)
 }
 
