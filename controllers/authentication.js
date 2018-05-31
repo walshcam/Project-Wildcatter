@@ -1,4 +1,15 @@
-const db = require('../models')
+const db = require('../models');
+const jwt = require('jwt-simple');
+const config = require('../config/config');
+
+//Function that creates a token
+function tokenForUser(user) {
+    const timestamp = new Date().getTime();
+    console.log("In The tokenForUser Database")
+    //sub - subject => using user id because it never changes
+    //iat - issued at time => creates timestamp for token
+    return jwt.encode({ sub: user.id, iat: timestamp }, config.secret)
+}
 
 exports.signup = function(req, res, err) {
     //********** INITIAL INPUT **********
@@ -27,9 +38,9 @@ exports.signup = function(req, res, err) {
             email: email,
             password: password
         })
-        .then(function(){
+        .then(function(dbUser){
             //If there is a new user, this returns a token
-            res.json({ success: true });
+            res.json({ token: tokenForUser(dbUser) });
         })
         .catch(function(err){
             res.json(err);
