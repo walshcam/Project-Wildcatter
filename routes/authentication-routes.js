@@ -1,4 +1,6 @@
 const Authentication = require("./../controllers/authentication");
+const passportService = require("./../services/passport");
+const passport = require('passport');
 
 //Authenticate the signin of an existing user
 const requireSignin = passport.authenticate('local', { session: false });

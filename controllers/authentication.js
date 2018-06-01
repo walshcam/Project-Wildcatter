@@ -12,6 +12,24 @@ function tokenForUser(user) {
     return jwt.encode({ sub: user.id, iat: timestamp }, config.secret)
 }
 
+//======================================================================
+
+// Signin Route
+
+//======================================================================
+
+exports.signin = function(req, res, next) {
+    //User has already had their email and password authorized
+    //User just needs to be given a token
+    res.send({ token: tokenForUser(req.user) });
+}
+
+//======================================================================
+
+// Signup Route
+
+//======================================================================
+
 exports.signup = function(req, res, err) {
     //********** INITIAL INPUT **********
     //Obtain email and password from post request
